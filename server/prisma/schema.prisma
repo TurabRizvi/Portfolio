@@ -1,0 +1,29 @@
+// Prisma schema for the portfolio backend.
+//
+// Using SQLite by default so this runs with zero external setup — the
+// database is just a file (prisma/dev.db). To move to Postgres later
+// (recommended for a real deployment), change provider to "postgresql"
+// and set DATABASE_URL to a Postgres connection string in .env — the
+// model below doesn't need to change.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Submission {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  viewed    Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  viewedAt  DateTime?
+
+  @@index([viewed])
+  @@index([createdAt])
+}
