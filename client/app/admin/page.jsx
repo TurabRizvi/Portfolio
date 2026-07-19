@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { apiFetch } from '../../lib/api';
+import ContentEditor from '../../components/admin/ContentEditor';
 
 function formatDate(iso) {
   const d = new Date(iso);
@@ -177,13 +178,18 @@ export default function AdminPage() {
             <button className={`admin-tab${tab === 'viewed' ? ' active' : ''}`} onClick={() => setTab('viewed')}>
               Viewed <span className="count">{viewedCount}</span>
             </button>
+            <button className={`admin-tab${tab === 'content' ? ' active' : ''}`} onClick={() => setTab('content')}>
+              Edit Site
+            </button>
           </div>
 
-          {loadingSubs && <div className="empty-state">Loading messages…</div>}
+          {tab === 'content' && <ContentEditor />}
 
-          {!loadingSubs && loadError && <div className="empty-state">{loadError}</div>}
+          {tab !== 'content' && loadingSubs && <div className="empty-state">Loading messages…</div>}
 
-          {!loadingSubs && !loadError && (
+          {tab !== 'content' && !loadingSubs && loadError && <div className="empty-state">{loadError}</div>}
+
+          {tab !== 'content' && !loadingSubs && !loadError && (
             <div className="sub-list">
               {filtered.length === 0 && (
                 <div className="empty-state">

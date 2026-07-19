@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const contactRoutes = require('./routes/contact');
 const adminRoutes = require('./routes/admin');
+const contentRoutes = require('./routes/content');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
@@ -26,7 +27,12 @@ app.use(
   })
 );
 
-app.use(express.json({ limit: '10kb' })); // small cap — this API only ever needs short JSON bodies
+// 10kb comfortably covers a contact form submission. The full site
+// content object (every page's text + links) is bigger, so it gets a
+// higher cap — 100kb is still nowhere near enough to be a real abuse
+// vector, and the /api/admin/content route double-checks payload size
+// itself on top of this.
+app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
 if (process.env.NODE_ENV !== 'test') {
@@ -37,6 +43,7 @@ app.get('/api/health', (req, res) => res.json({ ok: true, service: 'turab-portfo
 
 app.use('/api/contact', contactRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/content', contentRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

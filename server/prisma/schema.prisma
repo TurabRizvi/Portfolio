@@ -27,3 +27,15 @@ model Submission {
   @@index([viewed])
   @@index([createdAt])
 }
+
+// Single-row table holding every editable piece of site copy and every
+// link (resume, GitHub, LinkedIn, WhatsApp, etc.) as one JSON blob. A
+// key-value/JSON shape here instead of dozens of typed columns means
+// adding or renaming a text field on the site never needs a migration —
+// only the shape inside defaultContent.js and the frontend that reads it
+// need to agree.
+model SiteContent {
+  id        Int      @id @default(1)
+  data      Json
+  updatedAt DateTime @updatedAt
+}
