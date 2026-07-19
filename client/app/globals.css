@@ -361,6 +361,15 @@ main{ display:block; }
    (Appended to ensure flawless scaling without altering design)
    ============================================================ */
 
+/* Large Tablets & Mobile Menu Trigger (<= 760px) */
+@media (max-width: 760px) {
+  nav {
+    /* Solidify nav background gradient so text scrolling under blur doesn't overlap visually */
+    background: linear-gradient(rgba(11,10,8,0.98), rgba(11,10,8,0.85) 70%, rgba(11,10,8,0));
+    padding: 16px 20px;
+  }
+}
+
 /* Standard Mobile Devices & Small Tablets (<= 600px) */
 @media (max-width: 600px) {
   :root {
@@ -374,13 +383,14 @@ main{ display:block; }
 
   /* Layout & Spacing */
   section { padding: 56px 0; }
-  .page-hero { padding: 110px 0 36px; }
+  /* FIX: Increase top padding to fully clear the fixed navbar and its blur */
+  .page-hero { padding: 150px 0 40px; } 
+  
   .section-head { margin-bottom: 36px; gap: 12px; flex-wrap: wrap; }
   .section-title { font-size: 1.6rem; }
   .section-rule { display: none; } /* Prevents awkward stretching on mobile */
 
   /* Navigation */
-  nav { padding: 16px 20px; }
   .mobile-menu a { font-size: 1.75rem; padding: 10px 0; }
 
   /* Footer */
@@ -390,7 +400,8 @@ main{ display:block; }
     text-align: center; 
     padding: 28px 20px;
   }
-  footer .fmark { flex-direction: column; gap: 8px; }
+  footer .fmark { flex-direction: column; gap: 8px; width: 100%; }
+  .footer-admin-link { width: 100%; justify-content: center; }
 
   /* About Page */
   .about-text p { font-size: 15px; }
@@ -414,11 +425,11 @@ main{ display:block; }
 
   /* Contact */
   .contact-layout { gap: 36px; }
-  .contact-links { flex-direction: column; align-items: stretch; }
+  .contact-links { flex-direction: column; align-items: stretch; gap: 12px; }
   .clink { width: 100%; justify-content: center; }
   .contact-form input, .contact-form textarea { font-size: 14px; padding: 12px 14px; }
 
-  /* Admin Panel */
+  /* Admin Panel Fixes */
   .admin-main { padding: 30px 16px 60px; }
   .admin-bar { 
     padding: 16px; 
@@ -433,9 +444,12 @@ main{ display:block; }
     -webkit-overflow-scrolling: touch;
   }
   .admin-tab { padding: 10px 16px; }
-  .sub-item { padding: 18px 16px; }
-  .sub-item-name { font-size: 1.05rem; }
-  .sub-item-actions { flex-wrap: wrap; }
+  
+  /* Prevent admin item meta from squishing name */
+  .sub-item { padding: 20px 16px; }
+  .sub-item-top { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .sub-item-meta { text-align: left; }
+  .sub-item-actions { flex-wrap: wrap; gap: 10px; }
 }
 
 /* Very Small Mobile Devices (<= 380px) */
@@ -447,7 +461,7 @@ main{ display:block; }
   }
   
   .wrap { padding: 0 16px; }
-  .hero { padding-top: 110px; }
+  .hero { padding-top: 120px; }
   
   /* Make primary actions full-width for easier thumb tapping */
   .btn { 
@@ -463,6 +477,13 @@ main{ display:block; }
   .mobile-menu a { font-size: 1.5rem; }
   .contact-title { font-size: 2.1rem; }
   
-  /* Admin buttons wrap neatly */
-  .sub-item-actions button { flex: 1; }
+  /* Admin buttons stack vertically if screen is too narrow */
+  .sub-item-actions button { flex: 1 1 100%; justify-content: center; }
 }
+
+/* Safeguards against dynamic text breaking layout (Admin Panel Protection) */
+body, html { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
+h1, h2, h3, .hero-title, .project-name, .contact-title, .skill-card .sc-title, .section-title { max-width: 100%; overflow-wrap: anywhere; }
+.btn, .tag, .nav-links a, .clink, .mobile-menu a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.project-desc, .about-text p, .contact-sub, .lede, .sub-item-preview { max-width: 100%; overflow-wrap: anywhere; }
+.sub-item-detail .field-value { word-break: break-word; overflow-wrap: anywhere; max-height: 400px; overflow-y: auto; }
