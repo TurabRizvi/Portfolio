@@ -84,6 +84,16 @@ function ChipButton({ children, onClick, danger, disabled }) {
         background: 'transparent',
         border: `1px solid ${danger ? 'rgba(255,77,77,0.35)' : 'var(--line-strong)'}`,
         color: danger ? '#ff8080' : 'var(--ink)',
+        // FIX: global.css inherits `word-break: break-word` down from html/body,
+        // which collapses a flex child's natural minimum width down to ~1 character.
+        // When this button sits next to a `flex:1` input (e.g. "Remove group" beside
+        // the group-title input) there's no room for both on narrow screens, so the
+        // flexbox algorithm shrank the button instead of the input — folding its
+        // label into a vertical column, one letter per line. flexShrink:0 tells it
+        // to hold its natural width instead; whiteSpace:nowrap is a second guard so
+        // the text itself never wraps even if something squeezes it in the future.
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
       }}
     >
       {children}
@@ -111,7 +121,7 @@ function StringListEditor({ items, onChange, maxLength = LIMITS.groupItem, maxCo
             value={item}
             maxLength={maxLength}
             onChange={(e) => onChange(updateAt(items, i, () => e.target.value))}
-            style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+            style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
           />
           <ChipButton danger onClick={() => onChange(removeAt(items, i))}>✕</ChipButton>
         </div>
@@ -136,7 +146,7 @@ function GroupListEditor({ groups, onChange, maxGroups, maxItems = COUNTS.catego
               maxLength={LIMITS.groupTitle}
               onChange={(e) => onChange(updateAt(groups, i, (item) => ({ ...item, title: e.target.value })))}
               placeholder="Group title"
-              style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontFamily: "'Fraunces', serif", fontSize: '15px', padding: '9px 12px', borderRadius: '2px' }}
+              style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontFamily: "'Fraunces', serif", fontSize: '15px', padding: '9px 12px', borderRadius: '2px' }}
             />
             <ChipButton danger onClick={() => onChange(removeAt(groups, i))}>Remove group</ChipButton>
           </div>
@@ -245,7 +255,7 @@ export default function ContentEditor() {
                 rows={2}
                 maxLength={LIMITS.paragraph}
                 onChange={(e) => setNested('whatIDo', 'paragraphs', updateAt(content.whatIDo.paragraphs, i, () => e.target.value))}
-                style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+                style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
               />
               <ChipButton danger onClick={() => setNested('whatIDo', 'paragraphs', removeAt(content.whatIDo.paragraphs, i))}>✕</ChipButton>
             </div>
@@ -282,7 +292,7 @@ export default function ContentEditor() {
                 rows={3}
                 maxLength={LIMITS.paragraph}
                 onChange={(e) => setNested('about', 'paragraphs', updateAt(content.about.paragraphs, i, () => e.target.value))}
-                style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+                style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
               />
               <ChipButton danger onClick={() => setNested('about', 'paragraphs', removeAt(content.about.paragraphs, i))}>✕</ChipButton>
             </div>
@@ -297,8 +307,8 @@ export default function ContentEditor() {
           <label style={labelStyle}><span>Stat boxes</span><span>{content.about.stats.length}/{COUNTS.stats}</span></label>
           {content.about.stats.map((s, i) => (
             <div key={i} style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-              <input type="text" value={s.n} maxLength={LIMITS.statNumber} placeholder="Number (e.g. 4+)" onChange={(e) => setNested('about', 'stats', updateAt(content.about.stats, i, (item) => ({ ...item, n: e.target.value })))} style={{ width: '120px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
-              <input type="text" value={s.l} maxLength={LIMITS.statLabel} placeholder="Label" onChange={(e) => setNested('about', 'stats', updateAt(content.about.stats, i, (item) => ({ ...item, l: e.target.value })))} style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={s.n} maxLength={LIMITS.statNumber} placeholder="Number (e.g. 4+)" onChange={(e) => setNested('about', 'stats', updateAt(content.about.stats, i, (item) => ({ ...item, n: e.target.value })))} style={{ width: '120px', flexShrink: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={s.l} maxLength={LIMITS.statLabel} placeholder="Label" onChange={(e) => setNested('about', 'stats', updateAt(content.about.stats, i, (item) => ({ ...item, l: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
               <ChipButton danger onClick={() => setNested('about', 'stats', removeAt(content.about.stats, i))}>✕</ChipButton>
             </div>
           ))}
@@ -309,8 +319,8 @@ export default function ContentEditor() {
           <label style={labelStyle}><span>Info rows (right column)</span><span>{content.about.sideRows.length}/{COUNTS.sideRows}</span></label>
           {content.about.sideRows.map((row, i) => (
             <div key={i} style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-              <input type="text" value={row.label} maxLength={LIMITS.sideRowLabel} placeholder="Label" onChange={(e) => setNested('about', 'sideRows', updateAt(content.about.sideRows, i, (item) => ({ ...item, label: e.target.value })))} style={{ width: '160px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
-              <input type="text" value={row.value} maxLength={LIMITS.sideRowValue} placeholder="Value" onChange={(e) => setNested('about', 'sideRows', updateAt(content.about.sideRows, i, (item) => ({ ...item, value: e.target.value })))} style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={row.label} maxLength={LIMITS.sideRowLabel} placeholder="Label" onChange={(e) => setNested('about', 'sideRows', updateAt(content.about.sideRows, i, (item) => ({ ...item, label: e.target.value })))} style={{ width: '160px', flexShrink: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={row.value} maxLength={LIMITS.sideRowValue} placeholder="Value" onChange={(e) => setNested('about', 'sideRows', updateAt(content.about.sideRows, i, (item) => ({ ...item, value: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
               <ChipButton danger onClick={() => setNested('about', 'sideRows', removeAt(content.about.sideRows, i))}>✕</ChipButton>
             </div>
           ))}
@@ -323,8 +333,8 @@ export default function ContentEditor() {
         {content.work.projects.map((proj, i) => (
           <div key={i} style={{ border: '1px solid var(--line)', borderRadius: '3px', padding: '16px', marginBottom: '14px' }}>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}>
-              <input type="text" value={proj.idx} maxLength={LIMITS.projectIdx} placeholder="01" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, idx: e.target.value })))} style={{ width: '60px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
-              <input type="text" value={proj.name} maxLength={LIMITS.projectName} placeholder="Project name" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, name: e.target.value })))} style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontFamily: "'Fraunces', serif", fontSize: '15px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={proj.idx} maxLength={LIMITS.projectIdx} placeholder="01" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, idx: e.target.value })))} style={{ width: '60px', flexShrink: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={proj.name} maxLength={LIMITS.projectName} placeholder="Project name" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, name: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontFamily: "'Fraunces', serif", fontSize: '15px', padding: '8px 12px', borderRadius: '2px' }} />
               <ChipButton danger onClick={() => setNested('work', 'projects', removeAt(content.work.projects, i))}>Remove</ChipButton>
             </div>
             <input type="text" value={proj.role} maxLength={LIMITS.projectRole} placeholder="Role / subtitle" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, role: e.target.value })))} style={{ width: '100%', marginTop: '10px', marginBottom: '10px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
@@ -391,7 +401,7 @@ export default function ContentEditor() {
                 maxLength={LIMITS.socialLabel}
                 placeholder="LABEL (e.g. INSTAGRAM)"
                 onChange={(e) => setNested('links', 'social', updateAt(content.links.social, i, (item) => ({ ...item, label: e.target.value.toUpperCase() })))}
-                style={{ width: '160px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+                style={{ width: '160px', flexShrink: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
               />
               <input
                 type="text"
@@ -399,7 +409,7 @@ export default function ContentEditor() {
                 maxLength={LIMITS.socialUrl}
                 placeholder="https://..."
                 onChange={(e) => setNested('links', 'social', updateAt(content.links.social, i, (item) => ({ ...item, url: e.target.value })))}
-                style={{ flex: 1, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+                style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
               />
               <ChipButton danger onClick={() => setNested('links', 'social', removeAt(content.links.social, i))}>✕</ChipButton>
             </div>

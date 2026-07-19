@@ -271,6 +271,9 @@ footer .fmark{ display:flex; align-items:center; gap:14px; }
 #to-top{ position:fixed; bottom:26px; right:26px; z-index:90; width:46px; height:46px; border-radius:50%; background:var(--panel); border:1px solid var(--line-strong); color:var(--orange); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .35s, transform .35s, border-color .3s; }
 #to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
 #to-top:hover{ border-color:var(--orange); }
+/* FIX: pairs with a small IntersectionObserver on <footer> (see chat note) so the button
+   fades out once the footer is in view instead of sitting on top of it/Admin Login on short mobile pages */
+#to-top.near-footer{ opacity:0 !important; pointer-events:none !important; }
 
 /* ---------- reveal on scroll ---------- */
 .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
@@ -329,8 +332,22 @@ footer .fmark{ display:flex; align-items:center; gap:14px; }
 /* ============================================================
    HOME HERO
    ============================================================ */
-.hero{ min-height:100vh; display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; padding-top:110px; }
-@media (max-width:900px){ .hero{ grid-template-columns:1fr; padding-top:130px; } }
+.hero{
+  min-height:100vh;   /* fallback for older browsers */
+  min-height:100svh;  /* FIX: excludes the mobile browser's collapsible address bar, so
+                          the hero doesn't render taller than the real viewport on first
+                          paint — that was pushing the heading up under the fixed nav */
+  display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; padding-top:110px;
+}
+@media (max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:140px;
+    gap:36px; /* FIX: .hero never had a gap. Invisible on desktop's 2-column layout, but
+                 collapsed to 0px of breathing room once it stacks to 1 column on mobile —
+                 this is why the "Resume" button was touching the portrait image. */
+  }
+}
 
 .hero-title{ font-size:var(--fs-hero); line-height:0.98; overflow:hidden; }
 .hero-title .line{ display:block; overflow:hidden; }
@@ -402,6 +419,11 @@ main{ display:block; }
   }
   footer .fmark { flex-direction: column; gap: 8px; width: 100%; }
   .footer-admin-link { width: 100%; justify-content: center; }
+
+  /* Scroll-to-top button */
+  /* FIX: on short mobile pages the fixed 46px circle was overlapping the stacked footer
+     and could sit directly on top of the Admin Login link, blocking taps on it */
+  #to-top { bottom: 92px; right: 16px; }
 
   /* About Page */
   .about-text p { font-size: 15px; }
