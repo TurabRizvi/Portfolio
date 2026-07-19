@@ -271,8 +271,6 @@ footer .fmark{ display:flex; align-items:center; gap:14px; }
 #to-top{ position:fixed; bottom:26px; right:26px; z-index:90; width:46px; height:46px; border-radius:50%; background:var(--panel); border:1px solid var(--line-strong); color:var(--orange); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .35s, transform .35s, border-color .3s; }
 #to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
 #to-top:hover{ border-color:var(--orange); }
-/* FIX: pairs with a small IntersectionObserver on <footer> (see chat note) so the button
-   fades out once the footer is in view instead of sitting on top of it/Admin Login on short mobile pages */
 #to-top.near-footer{ opacity:0 !important; pointer-events:none !important; }
 
 /* ---------- reveal on scroll ---------- */
@@ -333,19 +331,15 @@ footer .fmark{ display:flex; align-items:center; gap:14px; }
    HOME HERO
    ============================================================ */
 .hero{
-  min-height:100vh;   /* fallback for older browsers */
-  min-height:100svh;  /* FIX: excludes the mobile browser's collapsible address bar, so
-                          the hero doesn't render taller than the real viewport on first
-                          paint — that was pushing the heading up under the fixed nav */
+  min-height:100vh;   
+  min-height:100svh;  
   display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; padding-top:110px;
 }
 @media (max-width:900px){
   .hero{
     grid-template-columns:1fr;
     padding-top:140px;
-    gap:36px; /* FIX: .hero never had a gap. Invisible on desktop's 2-column layout, but
-                 collapsed to 0px of breathing room once it stacks to 1 column on mobile —
-                 this is why the "Resume" button was touching the portrait image. */
+    gap:36px; 
   }
 }
 
@@ -375,15 +369,13 @@ main{ display:block; }
 
 /* ============================================================
    MOBILE RESPONSIVE OPTIMIZATIONS — ALL SIZES
-   (Appended to ensure flawless scaling without altering design)
    ============================================================ */
 
 /* Large Tablets & Mobile Menu Trigger (<= 760px) */
 @media (max-width: 760px) {
   nav {
-    /* Solidify nav background gradient so text scrolling under blur doesn't overlap visually */
     background: linear-gradient(rgba(11,10,8,0.98), rgba(11,10,8,0.85) 70%, rgba(11,10,8,0));
-    padding: 16px 20px;
+    padding: 18px 20px;
   }
 }
 
@@ -398,19 +390,13 @@ main{ display:block; }
     --space-6: 80px;
   }
 
-  /* Layout & Spacing */
   section { padding: 56px 0; }
-  /* FIX: Increase top padding to fully clear the fixed navbar and its blur */
-  .page-hero { padding: 150px 0 40px; } 
-  
   .section-head { margin-bottom: 36px; gap: 12px; flex-wrap: wrap; }
   .section-title { font-size: 1.6rem; }
-  .section-rule { display: none; } /* Prevents awkward stretching on mobile */
+  .section-rule { display: none; } 
 
-  /* Navigation */
   .mobile-menu a { font-size: 1.75rem; padding: 10px 0; }
 
-  /* Footer */
   footer { 
     flex-direction: column; 
     gap: 16px; 
@@ -420,18 +406,13 @@ main{ display:block; }
   footer .fmark { flex-direction: column; gap: 8px; width: 100%; }
   .footer-admin-link { width: 100%; justify-content: center; }
 
-  /* Scroll-to-top button */
-  /* FIX: on short mobile pages the fixed 46px circle was overlapping the stacked footer
-     and could sit directly on top of the Admin Login link, blocking taps on it */
   #to-top { bottom: 92px; right: 16px; }
 
-  /* About Page */
   .about-text p { font-size: 15px; }
   .about-side { gap: 8px; }
   .stat-row { grid-template-columns: 1fr; gap: 16px; }
   .stat { padding: 18px; }
 
-  /* Projects */
   .project { 
     padding: 28px 18px; 
     gap: 14px;
@@ -441,17 +422,14 @@ main{ display:block; }
   .tag-row { gap: 6px; margin-top: 16px; }
   .tag { font-size: 10.5px; padding: 4px 9px; }
 
-  /* Skills */
   .skill-card { padding: 28px 22px; }
   .skill-card .sc-title { font-size: 1.1rem; }
 
-  /* Contact */
   .contact-layout { gap: 36px; }
   .contact-links { flex-direction: column; align-items: stretch; gap: 12px; }
   .clink { width: 100%; justify-content: center; }
   .contact-form input, .contact-form textarea { font-size: 14px; padding: 12px 14px; }
 
-  /* Admin Panel Fixes */
   .admin-main { padding: 30px 16px 60px; }
   .admin-bar { 
     padding: 16px; 
@@ -467,7 +445,6 @@ main{ display:block; }
   }
   .admin-tab { padding: 10px 16px; }
   
-  /* Prevent admin item meta from squishing name */
   .sub-item { padding: 20px 16px; }
   .sub-item-top { flex-direction: column; align-items: flex-start; gap: 6px; }
   .sub-item-meta { text-align: left; }
@@ -485,7 +462,6 @@ main{ display:block; }
   .wrap { padding: 0 16px; }
   .hero { padding-top: 120px; }
   
-  /* Make primary actions full-width for easier thumb tapping */
   .btn { 
     width: 100%; 
     justify-content: center; 
@@ -499,7 +475,6 @@ main{ display:block; }
   .mobile-menu a { font-size: 1.5rem; }
   .contact-title { font-size: 2.1rem; }
   
-  /* Admin buttons stack vertically if screen is too narrow */
   .sub-item-actions button { flex: 1 1 100%; justify-content: center; }
 }
 
@@ -509,3 +484,30 @@ h1, h2, h3, .hero-title, .project-name, .contact-title, .skill-card .sc-title, .
 .btn, .tag, .nav-links a, .clink, .mobile-menu a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 .project-desc, .about-text p, .contact-sub, .lede, .sub-item-preview { max-width: 100%; overflow-wrap: anywhere; }
 .sub-item-detail .field-value { word-break: break-word; overflow-wrap: anywhere; max-height: 400px; overflow-y: auto; }
+
+/* ============================================================
+   FINAL FIX: SUB-PAGE HERO NAV OVERLAP
+   Forces all sub-page heroes (like "The short version") to sit 
+   completely clear of the fixed navbar on all screen sizes.
+   ============================================================ */
+.page-hero,
+section.page-hero,
+header.page-hero {
+  padding-top: 180px !important;
+}
+
+@media (max-width: 760px) {
+  .page-hero,
+  section.page-hero,
+  header.page-hero {
+    padding-top: 160px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-hero,
+  section.page-hero,
+  header.page-hero {
+    padding-top: 150px !important;
+  }
+}
