@@ -28,7 +28,7 @@ export default async function HomePage() {
             <Link href="/contact" className="btn btn-ghost">Get in touch</Link>
             {links.resume && (
               <a href={links.resume} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-                Resume ↓
+                CV
               </a>
             )}
           </div>
