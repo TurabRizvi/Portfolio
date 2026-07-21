@@ -156,6 +156,7 @@ export default function AdminPage() {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
+                    color: 'var(--orange)',
                   }}
                 >
                   {showPassword ? (
