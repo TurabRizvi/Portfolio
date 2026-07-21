@@ -161,9 +161,9 @@ export default function AdminPage() {
                 >
                   {showPassword ? (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <path d="M3 3l18 18" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M10.58 10.58A3 3 0 0 0 13.42 13.42" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M14.12 14.12A7.5 7.5 0 0 1 21 12c-2.94-4.5-8.06-7-13-7a17.9 17.9 0 0 0-3 .26" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="12" r="3" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 2l20 20" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   ) : (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
