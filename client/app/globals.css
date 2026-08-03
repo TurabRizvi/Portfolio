@@ -520,33 +520,20 @@ header.page-hero {
 /* ============================================================
    EDUCATION TIMELINE
    ============================================================ */
-.edu-timeline{ position:relative; max-width:860px; margin:0 auto; padding:0; }
+.edu-timeline{ position:relative; max-width:820px; margin:0 auto; padding-left:56px; }
 .edu-rail{
-  position:absolute; top:0; bottom:0; left:50%; width:2px;
-  transform:translateX(-50%);
+  position:absolute; left:15px; top:6px; bottom:6px; width:2px;
   background:linear-gradient(var(--blue), var(--accent), var(--accent-dim));
   box-shadow:0 0 14px 1px rgba(139,107,247,0.45);
 }
-.edu-item{ position:relative; padding:64px 0 0; display:grid; grid-template-columns:minmax(0, 1fr) 120px minmax(0, 1fr); align-items:start; }
+.edu-item{ position:relative; padding-bottom:64px; }
 .edu-item:last-child{ padding-bottom:0; }
-.edu-item.right .edu-card{ grid-column:3; justify-self:start; width:100%; max-width:calc(50vw - 90px); margin:0; }
-.edu-item.left .edu-card{ grid-column:1; justify-self:end; width:100%; max-width:calc(50vw - 90px); margin:0; }
 .edu-node{
-  grid-column:2;
-  grid-row:1;
-  justify-self:center;
-  align-self:center;
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:var(--panel);
-  border:1px solid var(--line-strong);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  position:absolute; left:-56px; top:2px; width:32px; height:32px; border-radius:50%;
+  background:var(--panel); border:1px solid var(--line-strong);
+  display:flex; align-items:center; justify-content:center;
   box-shadow:0 0 0 4px var(--bg), 0 0 20px 2px rgba(139,107,247,0.35);
-  color:var(--accent-soft);
-  z-index:2;
+  color:var(--accent-soft); z-index:2;
 }
 .edu-item.current .edu-node{
   border-color:var(--blue); color:var(--blue-soft);
@@ -561,8 +548,6 @@ header.page-hero {
   background:var(--panel); border:1px solid var(--line); border-radius:8px;
   padding:32px clamp(20px,3vw,38px); transition:border-color .4s, transform .4s, box-shadow .4s;
 }
-.edu-item.right .edu-card{ margin-left:48px; }
-.edu-item.left .edu-card{ margin-right:48px; }
 .edu-card:hover{
   border-color:var(--line-strong); transform:translateY(-3px);
   box-shadow:0 18px 46px -20px rgba(139,107,247,0.45), inset 0 0 60px rgba(58,183,245,0.04);
@@ -595,30 +580,10 @@ header.page-hero {
 }
 .edu-empty b{ color:var(--accent-soft); }
 
-@media (max-width:950px){
-  .edu-timeline{ padding:0 24px 0 0; }
-  .edu-item{ display:block; width:100%; padding-top:50px; }
-  .edu-item.right .edu-card,
-  .edu-item.left .edu-card{ margin:0; }
-  .edu-card{ margin:0 0 30px 50px; max-width:calc(100% - 70px); }
-  .edu-rail{ left:20px; transform:none; }
-  .edu-node{ position:absolute; left:20px; top:42px; transform:translateX(-50%); width:28px; height:28px; }
-  .edu-card{ padding:24px 18px; }
-  .edu-school{ font-size:1.25rem; }
-}
-
-@media (max-width:760px){
-  .edu-timeline{ padding:0 20px 0 0; }
-  .edu-card{ margin:0 0 30px 48px; max-width:calc(100% - 66px); }
-}
-
 @media (max-width:600px){
-  .edu-timeline{ padding:0 18px 0 0; }
-  .edu-rail{ left:18px; }
-  .edu-node{ position:absolute; left:18px; top:42px; transform:translateX(-50%); width:26px; height:26px; }
-  .edu-item.right .edu-card,
-  .edu-item.left .edu-card{ margin:0; }
-  .edu-card{ margin:0 0 30px 44px; max-width:calc(100% - 62px); }
+  .edu-timeline{ padding-left:44px; }
+  .edu-rail{ left:11px; }
+  .edu-node{ left:-44px; width:26px; height:26px; }
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
 }
