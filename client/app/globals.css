@@ -596,26 +596,26 @@ header.page-hero {
 .edu-empty b{ color:var(--accent-soft); }
 
 @media (max-width:950px){
-  .edu-timeline{ padding:0 30px; }
+  .edu-timeline{ padding:0 30px 0 0; }
   .edu-item{ display:block; width:100%; }
   .edu-item.right .edu-card,
-  .edu-item.left .edu-card{ margin:0 0 30px 62px; max-width:calc(100% - 80px); width:auto; }
-  .edu-rail{ left:32px; transform:none; }
-  .edu-node{ left:32px; top:42px; transform:translateX(-50%); width:26px; height:26px; }
+  .edu-item.left .edu-card{ margin:0 0 30px 72px; max-width:calc(100% - 92px); width:auto; }
+  .edu-rail{ left:20px; transform:none; }
+  .edu-node{ left:20px; top:42px; transform:none; width:26px; height:26px; }
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
 }
 
 @media (max-width:760px){
-  .edu-timeline{ padding:0 24px; }
+  .edu-timeline{ padding:0 24px 0 0; }
   .edu-item.right .edu-card,
-  .edu-item.left .edu-card{ margin:0 0 30px 56px; max-width:calc(100% - 72px); }
+  .edu-item.left .edu-card{ margin:0 0 30px 64px; max-width:calc(100% - 76px); }
 }
 
 @media (max-width:600px){
-  .edu-timeline{ padding:0 20px 0 58px; }
-  .edu-rail{ left:22px; }
-  .edu-node{ left:22px; top:42px; transform:none; width:26px; height:26px; }
+  .edu-timeline{ padding:0 20px 0 0; }
+  .edu-rail{ left:18px; }
+  .edu-node{ left:18px; top:42px; transform:none; width:26px; height:26px; }
   .edu-item.right .edu-card,
   .edu-item.left .edu-card{ margin:0 0 30px 54px; max-width:calc(100% - 72px); }
   .edu-card{ padding:24px 18px; }
