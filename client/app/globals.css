@@ -529,8 +529,8 @@ header.page-hero {
 }
 .edu-item{ position:relative; padding:64px 0 0; display:grid; grid-template-columns:1fr 40px 1fr; align-items:start; }
 .edu-item:last-child{ padding-bottom:0; }
-.edu-item.right .edu-card{ grid-column:3; justify-self:start; margin-left:48px; }
-.edu-item.left .edu-card{ grid-column:1; justify-self:end; margin-right:48px; }
+.edu-item.right .edu-card{ grid-column:3; justify-self:stretch; margin-left:48px; max-width:calc(50vw - 76px); }
+.edu-item.left .edu-card{ grid-column:1; justify-self:stretch; margin-right:48px; max-width:calc(50vw - 76px); }
 .edu-node{
   position:absolute; left:50%; top:2px; width:32px; height:32px; border-radius:50%;
   transform:translateX(-50%);
@@ -595,6 +595,11 @@ header.page-hero {
   .edu-node{ left:32px; transform:none; width:26px; height:26px; }
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
+}
+
+@media (max-width:760px){
+  .edu-item.right .edu-card,
+  .edu-item.left .edu-card{ max-width:calc(100% - 72px); }
 }
 
 @media (max-width:600px){
