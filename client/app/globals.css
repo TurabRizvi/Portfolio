@@ -528,6 +528,8 @@ header.page-hero {
 }
 .edu-item{ position:relative; padding-bottom:64px; }
 .edu-item:last-child{ padding-bottom:0; }
+.edu-item.right{ padding-left:90px; }
+.edu-item.left{ padding-right:90px; }
 .edu-node{
   position:absolute; left:-56px; top:2px; width:32px; height:32px; border-radius:50%;
   background:var(--panel); border:1px solid var(--line-strong);
@@ -548,6 +550,8 @@ header.page-hero {
   background:var(--panel); border:1px solid var(--line); border-radius:8px;
   padding:32px clamp(20px,3vw,38px); transition:border-color .4s, transform .4s, box-shadow .4s;
 }
+.edu-item.right .edu-card{ margin-left:48px; }
+.edu-item.left .edu-card{ margin-right:48px; }
 .edu-card:hover{
   border-color:var(--line-strong); transform:translateY(-3px);
   box-shadow:0 18px 46px -20px rgba(139,107,247,0.45), inset 0 0 60px rgba(58,183,245,0.04);
