@@ -520,29 +520,20 @@ header.page-hero {
 /* ============================================================
    EDUCATION TIMELINE
    ============================================================ */
-.edu-timeline{
-  position:relative;
-  width:100vw;
-  max-width:none;
-  left:50%;
-  right:50%;
-  margin-left:-50vw;
-  margin-right:-50vw;
-  padding:0;
-}
+.edu-timeline{ position:relative; max-width:860px; margin:0 auto; padding:0; }
 .edu-rail{
   position:absolute; top:0; bottom:0; left:50%; width:2px;
   transform:translateX(-50%);
   background:linear-gradient(var(--blue), var(--accent), var(--accent-dim));
   box-shadow:0 0 14px 1px rgba(139,107,247,0.45);
 }
-.edu-item{ position:relative; padding:40px 0 0; display:grid; grid-template-columns:minmax(0, 1fr) 120px minmax(0, 1fr); align-items:start; }
+.edu-item{ position:relative; padding:64px 0 0; display:grid; grid-template-columns:minmax(0, 1fr) 120px minmax(0, 1fr); align-items:start; }
 .edu-item:last-child{ padding-bottom:0; }
 .edu-item.right .edu-card{ grid-column:3; justify-self:start; width:100%; max-width:calc(50vw - 90px); margin:0; }
 .edu-item.left .edu-card{ grid-column:1; justify-self:end; width:100%; max-width:calc(50vw - 90px); margin:0; }
 .edu-node{
-  position:absolute; left:50%; top:28px; width:32px; height:32px; border-radius:50%;
-  transform:translateX(-50%);
+  position:absolute; left:50%; top:50%; width:32px; height:32px; border-radius:50%;
+  transform:translate(-50%, -50%);
   background:var(--panel); border:1px solid var(--line-strong);
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 0 0 4px var(--bg), 0 0 20px 2px rgba(139,107,247,0.35);
@@ -596,7 +587,7 @@ header.page-hero {
 .edu-empty b{ color:var(--accent-soft); }
 
 @media (max-width:950px){
-  .edu-timeline{ width:auto; max-width:100%; margin:0; padding:0 30px; }
+  .edu-timeline{ padding:0 30px; }
   .edu-item{ display:block; }
   .edu-item.right .edu-card,
   .edu-item.left .edu-card{ margin:0 auto 30px; max-width:calc(100% - 80px); width:auto; }
@@ -612,5 +603,9 @@ header.page-hero {
 }
 
 @media (max-width:600px){
-  .edu-timeline{ padding:0 20px; }
+  .edu-timeline{ padding-left:44px; }
+  .edu-rail{ left:11px; }
+  .edu-node{ left:-44px; width:26px; height:26px; }
+  .edu-card{ padding:24px 18px; }
+  .edu-school{ font-size:1.25rem; }
 }
