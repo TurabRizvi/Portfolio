@@ -607,14 +607,15 @@ header.page-hero {
 }
 
 @media (max-width:760px){
+  .edu-timeline{ padding:0 24px; }
   .edu-item.right .edu-card,
   .edu-item.left .edu-card{ max-width:calc(100% - 72px); }
 }
 
 @media (max-width:600px){
-  .edu-timeline{ padding-left:44px; }
-  .edu-rail{ left:11px; }
-  .edu-node{ left:-44px; width:26px; height:26px; }
+  .edu-timeline{ padding:0 20px 0 58px; }
+  .edu-rail{ left:22px; }
+  .edu-node{ left:-24px; width:26px; height:26px; }
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
 }
