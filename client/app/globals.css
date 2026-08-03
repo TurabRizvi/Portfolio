@@ -598,6 +598,8 @@ header.page-hero {
 @media (max-width:950px){
   .edu-timeline{ padding:0 24px 0 0; }
   .edu-item{ display:block; width:100%; }
+  .edu-item.right .edu-card,
+  .edu-item.left .edu-card{ margin:0; }
   .edu-card{ margin:0 0 30px 56px; max-width:calc(100% - 72px); }
   .edu-rail{ left:20px; transform:none; }
   .edu-node{ left:20px; top:42px; transform:translateX(-50%); width:26px; height:26px; }
@@ -614,6 +616,8 @@ header.page-hero {
   .edu-timeline{ padding:0 18px 0 0; }
   .edu-rail{ left:18px; }
   .edu-node{ left:18px; top:42px; transform:translateX(-50%); width:26px; height:26px; }
+  .edu-item.right .edu-card,
+  .edu-item.left .edu-card{ margin:0; }
   .edu-card{ margin:0 0 30px 44px; max-width:calc(100% - 62px); }
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
