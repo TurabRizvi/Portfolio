@@ -25,7 +25,7 @@ const labelStyle = {
 function Counter({ value, max }) {
   const near = value.length > max * 0.9;
   return (
-    <span style={{ color: near ? 'var(--orange-soft)' : 'var(--ink-faint)', fontSize: '10px', textTransform: 'none', letterSpacing: 0 }}>
+    <span style={{ color: near ? 'var(--accent-soft)' : 'var(--ink-faint)', fontSize: '10px', textTransform: 'none', letterSpacing: 0 }}>
       {value.length}/{max}
     </span>
   );
@@ -104,7 +104,7 @@ function ChipButton({ children, onClick, danger, disabled }) {
 function SectionCard({ title, children }) {
   return (
     <div style={{ background: 'var(--panel)', border: '1px solid var(--line)', borderRadius: '4px', padding: '26px', marginBottom: '24px' }}>
-      <div className="serif" style={{ fontSize: '1.2rem', marginBottom: '18px', color: 'var(--orange-soft)' }}>{title}</div>
+      <div className="serif" style={{ fontSize: '1.2rem', marginBottom: '18px', color: 'var(--accent-soft)' }}>{title}</div>
       {children}
     </div>
   );
@@ -326,6 +326,48 @@ export default function ContentEditor() {
           ))}
           <ChipButton disabled={content.about.sideRows.length >= COUNTS.sideRows} onClick={() => setNested('about', 'sideRows', [...content.about.sideRows, { label: '', value: '' }])}>+ Add row</ChipButton>
         </div>
+      </SectionCard>
+
+      <SectionCard title={`Education page — timeline (${content.education.entries.length}/${COUNTS.education})`}>
+        <TextAreaField label="Intro line" value={content.education.lede} maxLength={LIMITS.eduLede} onChange={(v) => setNested('education', 'lede', v)} rows={2} />
+        <p style={{ fontSize: '11px', color: 'var(--ink-faint)', marginBottom: '14px' }}>
+          Entries render top to bottom in the order you add them here — put your earliest schooling first and your current program last.
+          Check &quot;Currently studying&quot; on one entry to show it with the glowing pulse and an &quot;Ongoing&quot; badge instead of its date range.
+        </p>
+        {content.education.entries.map((entry, i) => (
+          <div key={entry.id || i} style={{ border: '1px solid var(--line)', borderRadius: '3px', padding: '16px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+              <input type="text" value={entry.institution} maxLength={LIMITS.eduInstitution} placeholder="Institution name" onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, institution: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontFamily: "'Fraunces', serif", fontSize: '15px', padding: '8px 12px', borderRadius: '2px' }} />
+              <ChipButton danger onClick={() => setNested('education', 'entries', removeAt(content.education.entries, i))}>Remove</ChipButton>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+              <input type="text" value={entry.program} maxLength={LIMITS.eduProgram} placeholder="Program (e.g. BS Artificial Intelligence)" onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, program: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <input type="text" value={entry.period} maxLength={LIMITS.eduPeriod} placeholder="Years (e.g. 2021 — 2023)" onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, period: e.target.value })))} style={{ width: '180px', flexShrink: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+            </div>
+            <textarea value={entry.desc} rows={2} maxLength={LIMITS.eduDesc} placeholder="Short description" onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, desc: e.target.value })))} style={{ width: '100%', marginBottom: '4px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+            <div style={{ textAlign: 'right', marginBottom: '10px' }}><Counter value={entry.desc} max={LIMITS.eduDesc} /></div>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <input type="text" value={entry.score || ''} maxLength={LIMITS.eduScore} placeholder="Score / scholarship (optional, e.g. 90%)" onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, score: e.target.value })))} style={{ flex: 1, minWidth: 0, background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: 'var(--ink-dim)', whiteSpace: 'nowrap' }}>
+                <input
+                  type="checkbox"
+                  checked={!!entry.current}
+                  onChange={(e) => setNested('education', 'entries', updateAt(content.education.entries, i, (item) => ({ ...item, current: e.target.checked })))}
+                />
+                Currently studying
+              </label>
+            </div>
+          </div>
+        ))}
+        <ChipButton
+          disabled={content.education.entries.length >= COUNTS.education}
+          onClick={() => setNested('education', 'entries', [
+            ...content.education.entries,
+            { id: `edu-${Date.now()}`, institution: '', program: '', period: '', current: false, score: '', desc: '' },
+          ])}
+        >
+          + Add entry
+        </ChipButton>
       </SectionCard>
 
       <SectionCard title={`Work page — projects (${content.work.projects.length}/${COUNTS.projects})`}>

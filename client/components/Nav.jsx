@@ -7,9 +7,10 @@ import { useState } from 'react';
 const NAV_ITEMS = [
   { idx: '01', label: 'Home', href: '/' },
   { idx: '02', label: 'About', href: '/about' },
-  { idx: '03', label: 'Work', href: '/work' },
-  { idx: '04', label: 'Stack', href: '/stack' },
-  { idx: '05', label: 'Contact', href: '/contact' },
+  { idx: '03', label: 'Education', href: '/education' },
+  { idx: '04', label: 'Work', href: '/work' },
+  { idx: '05', label: 'Stack', href: '/stack' },
+  { idx: '06', label: 'Contact', href: '/contact' },
 ];
 
 export default function Nav() {

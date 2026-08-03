@@ -12,7 +12,7 @@ export default async function WorkPage() {
   return (
     <>
       <header className="page-hero wrap">
-        <p className="kicker">02 — Work</p>
+        <p className="kicker">03 — Work</p>
         <h1>
           Selected <span className="accent-italic">work</span>
         </h1>

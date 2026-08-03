@@ -156,19 +156,19 @@ export default function AdminPage() {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    color: 'var(--orange)',
+                    color: 'var(--accent)',
                   }}
                 >
                   {showPassword ? (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="12" cy="12" r="3" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M2 2l20 20" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="12" r="3" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 2l20 20" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   ) : (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="12" cy="12" r="3" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="12" r="3" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}
                 </button>
@@ -194,8 +194,8 @@ export default function AdminPage() {
                 width: '7px',
                 height: '7px',
                 borderRadius: '50%',
-                background: 'var(--orange)',
-                boxShadow: '0 0 10px rgba(255,106,26,.9)',
+                background: 'var(--accent)',
+                boxShadow: '0 0 10px rgba(139,107,247,.9)',
                 display: 'inline-block',
                 marginRight: '10px',
               }}

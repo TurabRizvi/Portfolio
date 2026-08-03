@@ -27,6 +27,12 @@ const LIMITS = {
   email: 200,
   resumeUrl: 400,
   contactSub: 320,
+  eduLede: 200,
+  eduInstitution: 100,
+  eduProgram: 80,
+  eduPeriod: 40,
+  eduScore: 30,
+  eduDesc: 320,
 };
 
 const COUNTS = {
@@ -40,6 +46,7 @@ const COUNTS = {
   projectTags: 10,
   stackGroups: 10,
   socialLinks: 10,
+  education: 10,
 };
 
 module.exports = { LIMITS, COUNTS };

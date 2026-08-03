@@ -10,7 +10,7 @@ export default async function HomePage() {
       <header className="hero wrap" id="top">
         <div>
           <p className="kicker fade-in-up" style={{ transitionDelay: '0.05s', display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px', flexWrap: 'wrap' }}>
-            <span style={{ width: '26px', height: '1px', background: 'var(--orange)', display: 'inline-block' }}></span>
+            <span style={{ width: '26px', height: '1px', background: 'var(--accent)', display: 'inline-block' }}></span>
             {hero.kicker}
           </p>
 
@@ -60,7 +60,7 @@ export default async function HomePage() {
             {whatIDo.paragraphs.map((p, i) => (
               <p className="lede" style={{ marginBottom: '16px' }} key={i}>{p}</p>
             ))}
-            <p className="lede" style={{ color: 'var(--orange-soft)', fontWeight: 500 }}>{whatIDo.tagline}</p>
+            <p className="lede" style={{ color: 'var(--accent-soft)', fontWeight: 500 }}>{whatIDo.tagline}</p>
           </div>
 
           <div className="skill-grid reveal">

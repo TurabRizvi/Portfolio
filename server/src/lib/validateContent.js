@@ -66,6 +66,19 @@ function validateContent(data) {
     if (!isStr(r.value) || r.value.length > LIMITS.sideRowValue) return fail(`An info row value is too long (max ${LIMITS.sideRowValue} characters)`);
   }
 
+  // ---------- education ----------
+  const { education } = data;
+  if (!education || !Array.isArray(education.entries)) return fail('education section is malformed');
+  if (!isStr(education.lede) || education.lede.length > LIMITS.eduLede) return fail(`education.lede is too long (max ${LIMITS.eduLede} characters)`);
+  if (education.entries.length > COUNTS.education) return fail(`Too many education entries (max ${COUNTS.education})`);
+  for (const e of education.entries) {
+    if (!isStr(e.institution) || e.institution.length > LIMITS.eduInstitution) return fail(`An education institution name is missing or too long (max ${LIMITS.eduInstitution} characters)`);
+    if (!isStr(e.program) || e.program.length > LIMITS.eduProgram) return fail(`An education program is missing or too long (max ${LIMITS.eduProgram} characters)`);
+    if (!isStr(e.period) || e.period.length > LIMITS.eduPeriod) return fail(`An education period is missing or too long (max ${LIMITS.eduPeriod} characters)`);
+    if (e.score !== undefined && (!isStr(e.score) || e.score.length > LIMITS.eduScore)) return fail(`An education score is too long (max ${LIMITS.eduScore} characters)`);
+    if (!isStr(e.desc) || e.desc.length > LIMITS.eduDesc) return fail(`An education description is missing or too long (max ${LIMITS.eduDesc} characters)`);
+  }
+
   // ---------- work ----------
   if (!work || !Array.isArray(work.projects)) return fail('work section is malformed');
   if (!isStr(work.lede) || work.lede.length > LIMITS.lede) return fail(`work.lede is too long (max ${LIMITS.lede} characters)`);

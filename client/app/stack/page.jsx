@@ -14,7 +14,7 @@ export default async function StackPage() {
   return (
     <>
       <header className="page-hero wrap">
-        <p className="kicker">03 — Stack</p>
+        <p className="kicker">04 — Stack</p>
         <h1>
           Tools of the <span className="accent-italic">trade</span>
         </h1>

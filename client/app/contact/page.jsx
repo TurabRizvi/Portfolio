@@ -13,7 +13,7 @@ export default async function ContactPage() {
   return (
     <>
       <header className="page-hero wrap">
-        <p className="kicker">04 — Contact</p>
+        <p className="kicker">05 — Contact</p>
         <h1 className="contact-title">
           Let&apos;s build the
           <br />

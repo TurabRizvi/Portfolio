@@ -56,6 +56,12 @@ const DEFAULT_CONTENT = {
       { label: 'Currently', value: 'Backend Intern Assessment @ XDevflow' },
     ],
   },
+  education: {
+    lede: 'The path so far, from first classroom to current semester.',
+    // Empty until filled in from the admin panel. Shape per entry:
+    // { id, institution, program, period, current (bool), score, desc }
+    entries: [],
+  },
   work: {
     lede: 'Four projects, four different problems — an AI assistant, a marketplace, a rental platform, and a solver.',
     projects: [
