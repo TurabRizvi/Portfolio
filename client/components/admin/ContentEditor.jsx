@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../lib/api';
 import { LIMITS, COUNTS } from '../../lib/contentLimits';
+import { DEFAULT_CONTENT } from '../../lib/defaultContent';
 
 function updateAt(array, index, updater) {
   return array.map((item, i) => (i === index ? updater(item) : item));
@@ -180,7 +181,7 @@ export default function ContentEditor() {
         const res = await apiFetch('/api/content');
         if (!res.ok) throw new Error('failed');
         const data = await res.json();
-        setContent(data.content);
+        setContent({ ...DEFAULT_CONTENT, ...data.content });
       } catch {
         setLoadError("Couldn't load site content. Is the backend running?");
       } finally {

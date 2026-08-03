@@ -18,7 +18,11 @@ router.get('/', async (req, res, next) => {
       });
     }
 
-    res.json({ ok: true, content: row.data, updatedAt: row.updatedAt });
+    // Merge under DEFAULT_CONTENT: a DB row saved before a new section
+    // (like `education`) existed won't have that key yet, so without this
+    // merge the frontend/admin would crash reading `content.education...`.
+    // This guarantees every known field is always present, old row or new.
+    res.json({ ok: true, content: { ...DEFAULT_CONTENT, ...row.data }, updatedAt: row.updatedAt });
   } catch (err) {
     next(err);
   }
