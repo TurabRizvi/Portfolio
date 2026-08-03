@@ -615,7 +615,7 @@ header.page-hero {
 @media (max-width:600px){
   .edu-timeline{ padding:0 20px 0 58px; }
   .edu-rail{ left:22px; }
-  .edu-node{ left:22px; top:42px; transform:translateX(-50%); width:26px; height:26px; }
+  .edu-node{ left:22px; top:42px; transform:none; width:26px; height:26px; }
   .edu-item.right .edu-card,
   .edu-item.left .edu-card{ margin:0 0 30px 54px; max-width:calc(100% - 72px); }
   .edu-card{ padding:24px 18px; }
