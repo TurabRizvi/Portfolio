@@ -527,12 +527,12 @@ header.page-hero {
   background:linear-gradient(var(--blue), var(--accent), var(--accent-dim));
   box-shadow:0 0 14px 1px rgba(139,107,247,0.45);
 }
-.edu-item{ position:relative; padding:64px 0 0; display:grid; grid-template-columns:1fr 40px 1fr; align-items:start; }
+.edu-item{ position:relative; padding:40px 0 0; display:grid; grid-template-columns:minmax(0, 1fr) 80px minmax(0, 1fr); align-items:start; }
 .edu-item:last-child{ padding-bottom:0; }
-.edu-item.right .edu-card{ grid-column:3; justify-self:stretch; margin-left:48px; max-width:calc(50vw - 76px); }
-.edu-item.left .edu-card{ grid-column:1; justify-self:stretch; margin-right:48px; max-width:calc(50vw - 76px); }
+.edu-item.right .edu-card{ grid-column:3; justify-self:start; width:100%; max-width:calc(50vw - 90px); }
+.edu-item.left .edu-card{ grid-column:1; justify-self:end; width:100%; max-width:calc(50vw - 90px); }
 .edu-node{
-  position:absolute; left:50%; top:48px; width:32px; height:32px; border-radius:50%;
+  position:absolute; left:50%; top:26px; width:32px; height:32px; border-radius:50%;
   transform:translateX(-50%);
   background:var(--panel); border:1px solid var(--line-strong);
   display:flex; align-items:center; justify-content:center;
@@ -590,7 +590,7 @@ header.page-hero {
   .edu-timeline{ padding:0 30px; }
   .edu-item{ display:block; }
   .edu-item.right .edu-card,
-  .edu-item.left .edu-card{ margin:0 auto 30px; max-width:calc(100% - 80px); }
+  .edu-item.left .edu-card{ margin:0 auto 30px; max-width:calc(100% - 80px); width:auto; }
   .edu-rail{ left:32px; transform:none; }
   .edu-node{ left:32px; top:42px; transform:none; width:26px; height:26px; }
   .edu-card{ padding:24px 18px; }
