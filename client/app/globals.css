@@ -532,12 +532,21 @@ header.page-hero {
 .edu-item.right .edu-card{ grid-column:3; justify-self:start; width:100%; max-width:calc(50vw - 90px); margin:0; }
 .edu-item.left .edu-card{ grid-column:1; justify-self:end; width:100%; max-width:calc(50vw - 90px); margin:0; }
 .edu-node{
-  position:absolute; left:50%; top:50%; width:32px; height:32px; border-radius:50%;
-  transform:translate(-50%, -50%);
-  background:var(--panel); border:1px solid var(--line-strong);
-  display:flex; align-items:center; justify-content:center;
+  grid-column:2;
+  grid-row:1;
+  justify-self:center;
+  align-self:center;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   box-shadow:0 0 0 4px var(--bg), 0 0 20px 2px rgba(139,107,247,0.35);
-  color:var(--accent-soft); z-index:2;
+  color:var(--accent-soft);
+  z-index:2;
 }
 .edu-item.current .edu-node{
   border-color:var(--blue); color:var(--blue-soft);
