@@ -52,7 +52,7 @@ export default async function EducationPage() {
             <div className="edu-timeline reveal">
               <div className="edu-rail" />
               {entries.map((entry, i) => (
-                <div className={`edu-item${entry.current ? ' current' : ''}`} key={entry.id || i}>
+                <div className={`edu-item ${i % 2 === 0 ? 'right' : 'left'}${entry.current ? ' current' : ''}`} key={entry.id || i}>
                   <div className="edu-node"><BookIcon /></div>
                   <div className="edu-card">
                     <span className="edu-pill">

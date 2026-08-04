@@ -587,3 +587,20 @@ header.page-hero {
   .edu-card{ padding:24px 18px; }
   .edu-school{ font-size:1.25rem; }
 }
+
+/* Desktop / tablet: centered rail, cards alternate left and right of it.
+   Below this width we keep the single-column left-rail layout above. */
+@media (min-width:801px){
+  .edu-timeline{ max-width:920px; padding-left:0; }
+  .edu-rail{ left:50%; transform:translateX(-50%); }
+  .edu-item{ position:relative; width:50%; padding-bottom:76px; }
+  .edu-item.right{ left:0; padding-right:52px; text-align:right; }
+  .edu-item.left{ left:50%; padding-left:52px; text-align:left; }
+  .edu-item .edu-node{ top:2px; left:auto; right:auto; }
+  .edu-item.right .edu-node{ right:-16px; }
+  .edu-item.left .edu-node{ left:-16px; }
+  .edu-item.right .edu-pill{ flex-direction:row-reverse; }
+  .edu-item.right .edu-stat{ flex-direction:row-reverse; }
+  .edu-item.right .edu-stat span{ text-align:right; }
+  .edu-card{ display:inline-block; text-align:left; width:100%; }
+}
