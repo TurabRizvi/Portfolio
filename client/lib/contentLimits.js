@@ -21,6 +21,8 @@ const LIMITS = {
   projectRole: 80,
   projectDesc: 420,
   projectLink: 400,
+  projectGithub: 400,
+  projectLive: 400,
   tag: 30,
   socialLabel: 24,
   socialUrl: 400,

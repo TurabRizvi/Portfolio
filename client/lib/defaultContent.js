@@ -71,6 +71,8 @@ const DEFAULT_CONTENT = {
         role: 'Offline AI Desktop Assistant',
         desc: 'A desktop assistant that runs without an internet dependency for its core loop — local speech recognition paired with the Groq API for language understanding, wrapped in a C++ shell for speed.',
         tags: ['C++', 'Python', 'Vosk', 'Groq API'],
+        github: 'https://github.com/TurabRizvi',
+        live: '',
         link: 'https://github.com/TurabRizvi',
       },
       {
@@ -79,6 +81,8 @@ const DEFAULT_CONTENT = {
         role: 'Full-Stack Marketplace',
         desc: 'A freelance marketplace built for a campus audience — students posting and taking on paid work, with a proper data layer underneath instead of a spreadsheet pretending to be one.',
         tags: ['Next.js', 'Node.js', 'Express', 'PostgreSQL', 'Prisma'],
+        github: '',
+        live: '',
         link: '',
       },
       {
@@ -87,6 +91,8 @@ const DEFAULT_CONTENT = {
         role: 'Premium Car Rental Platform',
         desc: 'A car-rental front end built as a backend-intern technical assessment — local image management, an admin dashboard, and a dark/light theme system built on CSS custom properties.',
         tags: ['React (Vite)', 'React Router', 'Tailwind CSS'],
+        github: '',
+        live: '',
         link: '',
       },
       {
@@ -95,6 +101,8 @@ const DEFAULT_CONTENT = {
         role: 'Group Project, AI Solver',
         desc: 'A 2048 clone with an AI solver behind it, searching moves with BFS and DFS on top of six custom-built data structures — implemented in parallel across C++ and JavaScript.',
         tags: ['C++', 'JavaScript', 'BFS / DFS', 'Custom DS'],
+        github: '',
+        live: '',
         link: '',
       },
     ],

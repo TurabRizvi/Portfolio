@@ -90,6 +90,10 @@ function validateContent(data) {
     if (!isStr(p.desc) || p.desc.length > LIMITS.projectDesc) return fail(`A project description is too long (max ${LIMITS.projectDesc} characters)`);
     if (p.link !== undefined && (!isStr(p.link) || p.link.length > LIMITS.projectLink)) return fail(`A project link is too long (max ${LIMITS.projectLink} characters)`);
     if (p.link && !/^https?:\/\//i.test(p.link)) return fail(`A project link must start with http:// or https://`);
+    if (p.github !== undefined && (!isStr(p.github) || p.github.length > LIMITS.projectGithub)) return fail(`A project GitHub URL is too long (max ${LIMITS.projectGithub} characters)`);
+    if (p.github && !/^https?:\/\//i.test(p.github)) return fail(`A project GitHub URL must start with http:// or https://`);
+    if (p.live !== undefined && (!isStr(p.live) || p.live.length > LIMITS.projectLive)) return fail(`A project Live URL is too long (max ${LIMITS.projectLive} characters)`);
+    if (p.live && !/^https?:\/\//i.test(p.live)) return fail(`A project Live URL must start with http:// or https://`);
     if (!Array.isArray(p.tags) || p.tags.length > COUNTS.projectTags) return fail(`A project has too many tags (max ${COUNTS.projectTags})`);
     for (const t of p.tags) {
       if (!isStr(t) || t.length > LIMITS.tag) return fail(`A project tag is too long (max ${LIMITS.tag} characters)`);

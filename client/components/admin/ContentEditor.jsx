@@ -384,17 +384,27 @@ export default function ContentEditor() {
             <textarea value={proj.desc} rows={3} maxLength={LIMITS.projectDesc} placeholder="Description" onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, desc: e.target.value })))} style={{ width: '100%', marginBottom: '4px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }} />
             <div style={{ textAlign: 'right', marginBottom: '10px' }}><Counter value={proj.desc} max={LIMITS.projectDesc} /></div>
 
-            <label style={labelStyle}><span>Link (GitHub, live demo, etc. — leave blank for none)</span></label>
+            <label style={labelStyle}><span>GitHub URL</span></label>
             <input
               type="text"
-              value={proj.link || ''}
-              maxLength={LIMITS.projectLink}
+              value={proj.github || ''}
+              maxLength={LIMITS.projectGithub}
               placeholder="https://github.com/yourname/project"
-              onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, link: e.target.value })))}
+              onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, github: e.target.value })))}
+              style={{ width: '100%', marginBottom: '10px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
+            />
+
+            <label style={labelStyle}><span>Live demo URL</span></label>
+            <input
+              type="text"
+              value={proj.live || ''}
+              maxLength={LIMITS.projectLive}
+              placeholder="https://your-project.vercel.app"
+              onChange={(e) => setNested('work', 'projects', updateAt(content.work.projects, i, (p) => ({ ...p, live: e.target.value })))}
               style={{ width: '100%', marginBottom: '10px', background: 'var(--panel-2)', border: '1px solid var(--line)', color: 'var(--ink)', fontSize: '13px', padding: '8px 12px', borderRadius: '2px' }}
             />
             <p style={{ fontSize: '11px', color: 'var(--ink-faint)', marginBottom: '10px' }}>
-              If this is filled in, the project card becomes clickable and opens the link in a new tab. If it&apos;s blank, the card just isn&apos;t clickable — nothing breaks.
+              Fill either or both URLs to show action buttons on the project card. Leave blank to show no buttons.
             </p>
 
             <label style={labelStyle}><span>Tags</span></label>
@@ -410,7 +420,7 @@ export default function ContentEditor() {
           disabled={content.work.projects.length >= COUNTS.projects}
           onClick={() => setNested('work', 'projects', [
             ...content.work.projects,
-            { idx: String(content.work.projects.length + 1).padStart(2, '0'), name: 'New Project', role: '', desc: '', tags: [], link: '' },
+            { idx: String(content.work.projects.length + 1).padStart(2, '0'), name: 'New Project', role: '', desc: '', tags: [], github: '', live: '', link: '' },
           ])}
         >
           + Add project

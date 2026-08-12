@@ -23,10 +23,8 @@ export default async function WorkPage() {
         <div className="wrap">
           <div className="projects reveal">
             {work.projects.map((p) => {
-              const Wrapper = p.link ? 'a' : 'div';
-              const linkProps = p.link ? { href: p.link, target: '_blank', rel: 'noopener noreferrer' } : {};
               return (
-                <Wrapper className="project" key={p.idx} {...linkProps}>
+                <div className="project" key={p.idx}>
                   <div className="project-index">{p.idx}</div>
                   <div>
                     <div className="project-name serif">{p.name}</div>
@@ -37,8 +35,16 @@ export default async function WorkPage() {
                     <div className="tag-row">
                       {p.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
                     </div>
+                    <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
+                      {p.github && (
+                        <a href={p.github} className="btn btn-view" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      )}
+                      {p.live && (
+                        <a href={p.live} className="btn btn-view" target="_blank" rel="noopener noreferrer">Live demo</a>
+                      )}
+                    </div>
                   </div>
-                </Wrapper>
+                </div>
               );
             })}
           </div>
